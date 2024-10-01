@@ -7,6 +7,7 @@ import Root from "./LayOut/Root.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
+import AddSpot from "./components/AddSpot.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/addspot",
+        element: <AddSpot></AddSpot>,
       },
     ],
   },
