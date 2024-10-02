@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 const AddSpot = () => {
   const handleAddSpot = (e) => {
     e.preventDefault();
@@ -8,12 +9,14 @@ const AddSpot = () => {
     const countryName = form.country_name.value;
     const location = form.location.value;
     const description = form.description.value;
-    const cost = form.cost.value;
+    const cost = parseInt(form.cost.value);
     const season = form.season.value;
     const time = form.time.value;
-    const visitors = form.visitors.value;
+    const visitors = parseInt(form.visitors.value);
+    const email = form.email.value;
+    const user_name = form.user_name.value;
 
-    console.log({
+    const newSpot = {
       image,
       touristsSpotName,
       countryName,
@@ -23,7 +26,29 @@ const AddSpot = () => {
       season,
       time,
       visitors,
-    });
+      email,
+      user_name,
+    };
+    // insert at mongodb
+    fetch("http://localhost:5000/spot", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newSpot),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your Tourist Spot has been Added",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(data);
+      });
   };
   return (
     <div className="p-4">
@@ -127,6 +152,28 @@ const AddSpot = () => {
           <input
             name="visitors"
             type="number"
+            placeholder="Visitors"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">User Email</span>
+          </label>
+          <input
+            name="email"
+            type="email"
+            placeholder="Visitors"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">User Name</span>
+          </label>
+          <input
+            name="user_name"
+            type="text"
             placeholder="Visitors"
             className="input input-bordered"
           />

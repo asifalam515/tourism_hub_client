@@ -8,12 +8,19 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
 import AddSpot from "./components/AddSpot.jsx";
+import Home from "./components/Home.jsx";
+import AuthProviders from "./providers/AuthProviders.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/spot"),
+      },
       { path: "/register", element: <Register></Register> },
       {
         path: "/login",
@@ -28,6 +35,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders>
+      <RouterProvider router={router} />
+    </AuthProviders>
   </StrictMode>
 );
