@@ -4,7 +4,8 @@ import { AuthContext } from "../providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, loggedOut } = useContext(AuthContext);
+  const { user, loggedOut, name, photo } = useContext(AuthContext);
+
   const handleLogOut = () => {
     loggedOut().then(() => {
       // sign out successful
@@ -30,6 +31,13 @@ const Navbar = () => {
       <li>
         <NavLink to="/addspot">Add Tourist Spot</NavLink>
       </li>
+
+      {user && (
+        <li className="flex items-center gap-2">
+          <img src={photo} alt="User" className="w-15 h-15 rounded-full" />
+          <h1>{name}</h1>
+        </li>
+      )}
     </>
   );
   return (

@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthProviders";
 import { EmailAuthCredential } from "firebase/auth";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setName, setPhoto } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,9 +24,11 @@ const Register = () => {
     // new User
 
     //  create your account
-    createUser(email, password)
+    createUser(email, password, photo, name)
       .then((result) => {
         // new user has been created here we will send it to DB
+        setName(result.user.displayName);
+        setPhoto(result.user.photoURL);
         const newUser = {
           name,
           email,

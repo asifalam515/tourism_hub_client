@@ -14,7 +14,9 @@ import app from "../firebase/firebase.config";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { loggedInUser } = useContext(AuthContext);
+  const { loggedInUser, setPhoto, user, setName } = useContext(AuthContext);
+  console.log("user is ", user);
+
   const navigate = useNavigate();
   const auth = getAuth(app);
 
@@ -23,7 +25,8 @@ const Login = () => {
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // logge in success
+        // logged in success
+
         Swal.fire({
           icon: "success",
           title: "Logged In using Google",
@@ -42,6 +45,8 @@ const Login = () => {
   const handleGithubLogin = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
+        console.log("data from github", result);
+
         // logge in success
         Swal.fire({
           icon: "success",
