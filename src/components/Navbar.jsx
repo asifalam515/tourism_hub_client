@@ -31,13 +31,6 @@ const Navbar = () => {
       <li>
         <NavLink to="/addspot">Add Tourist Spot</NavLink>
       </li>
-
-      {user && (
-        <li className="flex items-center gap-2">
-          <img src={photo} alt="User" className="w-15 h-15 rounded-full" />
-          <h1>{name}</h1>
-        </li>
-      )}
     </>
   );
   return (
@@ -68,21 +61,42 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Tourism Hub</a>
+          <Link to="/" className="btn btn-ghost text-4xl">
+            Tourism Hub
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end gap-2">
-          <Link to="/register" className="btn">
-            Register
-          </Link>
-          <Link to="/login" className="btn">
-            Login
-          </Link>
-          <button onClick={handleLogOut} className="btn">
-            LogOut
-          </button>
+          {user ? (
+            <>
+              <li className="flex items-center gap-2">
+                <div className="group relative">
+                  <img
+                    src={photo}
+                    alt="User"
+                    className="w-15 h-14 rounded-full"
+                  />
+                  <h1 className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-gray-800 text-white text-sm rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {name}
+                  </h1>
+                </div>
+              </li>
+              <button onClick={handleLogOut} className="btn">
+                LogOut
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/register" className="btn">
+                Register
+              </Link>
+              <Link to="/login" className="btn">
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

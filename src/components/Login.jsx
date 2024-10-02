@@ -11,7 +11,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loggedInUser, setPhoto, user, setName } = useContext(AuthContext);
@@ -120,15 +120,23 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+              <div>
+                <h1>
+                  Do not have Account?Sign UP here{" "}
+                  <Link className="btn btn-link" to="/register">
+                    Register
+                  </Link>{" "}
+                </h1>
+              </div>
             </form>
             {/* 
             login Using github and google
             */}
             <div className="flex justify-center items-center gap-10">
-              <button onClick={handleGoogleLogin} className="btn btn-sm">
+              <button onClick={handleGoogleLogin} className="btn ">
                 <FaGoogle />
               </button>
-              <button onClick={handleGithubLogin} className="btn btn-sm">
+              <button onClick={handleGithubLogin} className="btn ">
                 <FaGithub />
               </button>
             </div>

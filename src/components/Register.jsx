@@ -2,10 +2,9 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProviders";
-import { EmailAuthCredential } from "firebase/auth";
 
 const Register = () => {
-  const { createUser, setName, setPhoto } = useContext(AuthContext);
+  const { createUser, setName, setPhoto, user } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,19 +21,21 @@ const Register = () => {
       });
     }
     // new User
+    const newUser = {
+      name,
+      email,
+      password,
+      photo,
+    };
 
     //  create your account
     createUser(email, password, photo, name)
       .then((result) => {
         // new user has been created here we will send it to DB
-        setName(result.user.displayName);
-        setPhoto(result.user.photoURL);
-        const newUser = {
-          name,
-          email,
-          password,
-          photo,
-        };
+
+        // setName(user.displayName);
+        // setPhoto(user.photoURL);
+
         fetch("http://localhost:5000/user", {
           method: "POST",
           headers: {
@@ -51,6 +52,7 @@ const Register = () => {
               title: "Created",
               text: "New User Created",
             });
+            // set the user image and photo
           });
         form.reset();
       })

@@ -10,6 +10,7 @@ import Login from "./components/Login.jsx";
 import AddSpot from "./components/AddSpot.jsx";
 import Home from "./components/Home.jsx";
 import AuthProviders from "./providers/AuthProviders.jsx";
+import PrivateRoutes from "./routes/PrivateRoutes.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addspot",
-        element: <AddSpot></AddSpot>,
+        element: (
+          <PrivateRoutes>
+            <AddSpot></AddSpot>
+          </PrivateRoutes>
+        ),
       },
     ],
   },

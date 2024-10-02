@@ -163,7 +163,7 @@ const AddSpot = () => {
           <input
             name="email"
             type="email"
-            placeholder="Visitors"
+            placeholder="user email"
             className="input input-bordered"
           />
         </div>

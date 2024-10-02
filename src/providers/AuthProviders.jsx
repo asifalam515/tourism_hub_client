@@ -31,25 +31,15 @@ const AuthProviders = ({ children }) => {
 
   //   log out
   const loggedOut = () => {
-    setLoading(true);
     setName("");
     setPhoto("");
     return signOut(auth);
   };
-  // auth observer by onAuthStateChanged
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //     console.log("current value of the user is ", currentUser);
-  //     setLoading(false);
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
+        setLoading(false);
         setUser(currentUser);
         setName(currentUser.displayName);
         setPhoto(currentUser.photoURL);
