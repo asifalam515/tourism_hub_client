@@ -1,4 +1,4 @@
-import { Children, StrictMode } from "react";
+import { Children, StrictMode, useContext } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -9,8 +9,10 @@ import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
 import AddSpot from "./components/AddSpot.jsx";
 import Home from "./components/Home.jsx";
-import AuthProviders from "./providers/AuthProviders.jsx";
+import AuthProviders, { AuthContext } from "./providers/AuthProviders.jsx";
 import PrivateRoutes from "./routes/PrivateRoutes.jsx";
+import MyList from "./components/MyList.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +36,15 @@ const router = createBrowserRouter([
             <AddSpot></AddSpot>
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/mylist",
+        element: (
+          <PrivateRoutes>
+            <MyList></MyList>
+          </PrivateRoutes>
+        ),
+        loader: () => fetch("http://localhost:5000/mylist"),
       },
     ],
   },
