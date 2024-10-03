@@ -15,20 +15,24 @@ const TouristSpot = ({ spot }) => {
   } = spot;
   return (
     <div>
-      <div className="card bg-base-100 w-96 shadow-xl">
+      <div className="card bg-base-100 w-96 h-auto shadow-xl">
         <figure>
-          <img src={image} alt="image" />
+          <img className="w-full h-48 object-cover" src={image} alt="image" />
         </figure>
-        <div className="card-body">
-          <h2 className="text-2xl font-bold text-center">{touristsSpotName}</h2>
-          <h2 className="text-xl">{countryName} </h2>
-          <p>
-            Best for <span className="font-bold">{season}</span> and{" "}
-            <span className="font-bold"> {time}</span> days tour
-          </p>
-          <p>{location}</p>
-          <h2>Avarage Cost of {cost}</h2>
-          <div className="card-actions justify-center">
+        <div className="card-body flex flex-col justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-center">
+              {touristsSpotName}
+            </h2>
+            <h2 className="text-xl text-center">{countryName}</h2>
+            <p className="text-center">
+              Best for <span className="font-bold">{season}</span> and{" "}
+              <span className="font-bold">{time}</span> days tour
+            </p>
+            <p className="text-center">{location}</p>
+            <h2 className="text-center">Average Cost of {cost}</h2>
+          </div>
+          <div className="card-actions justify-center mt-4">
             <Link to={`/viewDetails/${_id}`} className="btn btn-primary">
               View Details
             </Link>

@@ -13,6 +13,8 @@ import AuthProviders, { AuthContext } from "./providers/AuthProviders.jsx";
 import PrivateRoutes from "./routes/PrivateRoutes.jsx";
 import MyList from "./components/MyList.jsx";
 import ViewDetails from "./components/ViewDetails.jsx";
+import AllSpot from "./components/AllSpot.jsx";
+import TouristSpot from "./components/TouristSpot.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () => fetch("http://localhost:5000/spot"),
+      },
+      {
+        path: "/allspot",
+        element: <AllSpot></AllSpot>,
+        loader: () => fetch("http://localhost:5000/allspot"),
       },
       { path: "/register", element: <Register></Register> },
       {

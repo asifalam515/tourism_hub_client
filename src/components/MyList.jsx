@@ -1,21 +1,59 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const MyList = () => {
   const loadedData = useLoaderData();
   const { user } = useContext(AuthContext);
 
+  // Initialize state with filtered loaded data
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (user?.email) {
+      const filteredData = loadedData.filter(
+        (item) => item.email.toLowerCase() === user.email.toLowerCase()
+      );
+      setData(filteredData);
+    }
+  }, [loadedData, user]);
+
+  // Delete data
+  const handleDeleteData = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/mylist/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((response) => {
+            if (response.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              const remaining = data.filter((item) => item._id !== _id);
+              setData(remaining);
+            }
+          });
+      }
+    });
+  };
+
   // Ensure user.email exists before using it
   if (!user?.email) {
     return <div>Loading...</div>;
   }
-
-  const myData = loadedData.filter(
-    (data) => data.email.toLowerCase() === user.email.toLowerCase()
-  );
-
-  console.log("Filtered data: ", myData);
 
   return (
     <div>
@@ -38,8 +76,8 @@ const MyList = () => {
             </tr>
           </thead>
           <tbody>
-            {/* Render each row from myData */}
-            {myData.map((data, idx) => (
+            {/* Render each row from data */}
+            {data.map((item, idx) => (
               <tr key={idx}>
                 <th>
                   <label>
@@ -51,25 +89,30 @@ const MyList = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src={data.image}
+                          src={item.image}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{data.touristsSpotName}</div>
+                      <div className="font-bold">{item.touristsSpotName}</div>
                       <div className="text-sm opacity-50">
-                        {data.countryName}
+                        {item.countryName}
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>{data.countryName}</td>
-                <td>{data.cost}</td>
+                <td>{item.countryName}</td>
+                <td>{item.cost}</td>
 
                 <th className="flex gap-2">
-                  <button className="btn btn-primary  btn-xs">Update</button>
-                  <button className="btn btn-error btn-xs">Delete</button>
+                  <button className="btn btn-primary btn-xs">Update</button>
+                  <button
+                    onClick={() => handleDeleteData(item._id)}
+                    className="btn btn-error btn-xs"
+                  >
+                    Delete
+                  </button>
                 </th>
               </tr>
             ))}
