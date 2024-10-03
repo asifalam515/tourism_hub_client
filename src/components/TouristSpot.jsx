@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom";
+
 const TouristSpot = ({ spot }) => {
+  // const handleViewDetails = () => {};
   const {
+    _id,
     image,
     touristsSpotName,
     countryName,
@@ -16,12 +20,18 @@ const TouristSpot = ({ spot }) => {
           <img src={image} alt="image" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{touristsSpotName}</h2>
+          <h2 className="text-2xl font-bold text-center">{touristsSpotName}</h2>
+          <h2 className="text-xl">{countryName} </h2>
           <p>
-            Best for {season} and {time} days tour
+            Best for <span className="font-bold">{season}</span> and{" "}
+            <span className="font-bold"> {time}</span> days tour
           </p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">View Details</button>
+          <p>{location}</p>
+          <h2>Avarage Cost of {cost}</h2>
+          <div className="card-actions justify-center">
+            <Link to={`/viewDetails/${_id}`} className="btn btn-primary">
+              View Details
+            </Link>
           </div>
         </div>
       </div>

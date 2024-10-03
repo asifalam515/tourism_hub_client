@@ -12,6 +12,7 @@ import Home from "./components/Home.jsx";
 import AuthProviders, { AuthContext } from "./providers/AuthProviders.jsx";
 import PrivateRoutes from "./routes/PrivateRoutes.jsx";
 import MyList from "./components/MyList.jsx";
+import ViewDetails from "./components/ViewDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,16 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: () => fetch("http://localhost:5000/mylist"),
+      },
+      {
+        path: "/viewdetails/:id",
+        element: (
+          <PrivateRoutes>
+            <ViewDetails></ViewDetails>
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/viewDetails/${params.id}`),
       },
     ],
   },
