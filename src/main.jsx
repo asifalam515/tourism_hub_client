@@ -15,6 +15,7 @@ import MyList from "./components/MyList.jsx";
 import ViewDetails from "./components/ViewDetails.jsx";
 import AllSpot from "./components/AllSpot.jsx";
 import TouristSpot from "./components/TouristSpot.jsx";
+import UpdateSpot from "./components/UpdateSpot.jsx";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,17 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/viewDetails/${params.id}`),
+      },
+      {
+        path: "/mylist/:id",
+        element: (
+          <PrivateRoutes>
+            {" "}
+            <UpdateSpot></UpdateSpot>
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/mylist/${params.id}`),
       },
     ],
   },

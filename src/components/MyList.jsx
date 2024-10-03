@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 import Swal from "sweetalert2";
 
@@ -56,11 +56,11 @@ const MyList = () => {
   }
 
   return (
-    <div>
-      <h1>My list</h1>
+    <div className="p-4 md:p-8">
+      <h1 className="text-2xl font-bold mb-4">My list</h1>
       {/* Render the filtered data */}
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table-auto w-full">
           {/* head */}
           <thead>
             <tr>
@@ -69,22 +69,22 @@ const MyList = () => {
                   <input type="checkbox" className="checkbox" />
                 </label>
               </th>
-              <th>Name of the Place</th>
-              <th>Country</th>
-              <th>Cost</th>
-              <th>Action</th>
+              <th className="p-2 md:p-4">Name of the Place</th>
+              <th className="p-2 md:p-4">Country</th>
+              <th className="p-2 md:p-4">Cost</th>
+              <th className="p-2 md:p-4">Action</th>
             </tr>
           </thead>
           <tbody>
             {/* Render each row from data */}
             {data.map((item, idx) => (
-              <tr key={idx}>
+              <tr key={idx} className="border-t">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
                   </label>
                 </th>
-                <td>
+                <td className="p-2 md:p-4">
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
@@ -102,11 +102,16 @@ const MyList = () => {
                     </div>
                   </div>
                 </td>
-                <td>{item.countryName}</td>
-                <td>{item.cost}</td>
+                <td className="p-2 md:p-4">{item.countryName}</td>
+                <td className="p-2 md:p-4">{item.cost}</td>
 
-                <th className="flex gap-2">
-                  <button className="btn btn-primary btn-xs">Update</button>
+                <th className="flex gap-2 p-2 md:p-4">
+                  <Link
+                    to={`/mylist/${item._id}`}
+                    className="btn btn-primary btn-xs"
+                  >
+                    Update
+                  </Link>
                   <button
                     onClick={() => handleDeleteData(item._id)}
                     className="btn btn-error btn-xs"
