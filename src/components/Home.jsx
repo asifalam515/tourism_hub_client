@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import Banner from "./Banner";
 import ContactUs from "./ContactUs";
+import Faq from "./Faq";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const Home = () => {
       <div>
         <ContactUs></ContactUs>
       </div>
+      <Faq></Faq>
     </div>
   );
 };
