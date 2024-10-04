@@ -22,8 +22,13 @@ const Home = () => {
         ))}
       </div>
 
-      <ContactUs></ContactUs>
-      <Faq></Faq>
+      <div className="mb-2">
+        <ContactUs></ContactUs>
+      </div>
+      <div className="mt-2">
+        {" "}
+        <Faq></Faq>
+      </div>
     </div>
   );
 };

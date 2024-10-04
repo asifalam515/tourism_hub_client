@@ -38,7 +38,7 @@ const Faq = () => {
               </summary>
               <div className="px-4 pb-4 space-y-2">
                 <p>
-                  We don't Provide combo hence its hard to maintain.But we do
+                  We do not Provide combo hence its hard to maintain.But we do
                   have multiple packages that you can choose
                 </p>
               </div>
