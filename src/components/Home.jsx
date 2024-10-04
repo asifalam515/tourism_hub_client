@@ -21,9 +21,8 @@ const Home = () => {
           <TouristSpot key={data._id} spot={data}></TouristSpot>
         ))}
       </div>
-      <div>
-        <ContactUs></ContactUs>
-      </div>
+
+      <ContactUs></ContactUs>
       <Faq></Faq>
     </div>
   );
