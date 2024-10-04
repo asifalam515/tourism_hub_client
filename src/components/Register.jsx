@@ -36,7 +36,7 @@ const Register = () => {
         // setName(user.displayName);
         // setPhoto(user.photoURL);
 
-        fetch("http://localhost:5000/user", {
+        fetch("https://tourism-hub-server.vercel.app/user", {
           method: "POST",
           headers: {
             Accept: "application/json",

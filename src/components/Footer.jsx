@@ -1,3 +1,6 @@
+import { FaTwitter, CiInstagram } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+
 const Footer = () => {
   return (
     <div>
@@ -17,10 +20,16 @@ const Footer = () => {
           <a className="link link-hover">Press kit</a>
         </nav>
         <nav>
-          <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <h6 className="footer-title">Social</h6>
+          <a className="link link-hover">
+            <FaFacebookF />
+          </a>
+          <a className="link link-hover">
+            <FaTwitter />
+          </a>
+          <a className="link link-hover">
+            <CiInstagram />
+          </a>
         </nav>
         <form>
           <h6 className="footer-title">Newsletter</h6>

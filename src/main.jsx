@@ -26,12 +26,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/spot"),
+        loader: () => fetch("https://tourism-hub-server.vercel.app/spot"),
       },
       {
         path: "/allspot",
         element: <AllSpot></AllSpot>,
-        loader: () => fetch("http://localhost:5000/allspot"),
+        loader: () => fetch("https://tourism-hub-server.vercel.app/allspot"),
       },
       { path: "/register", element: <Register></Register> },
       {
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
             <MyList></MyList>
           </PrivateRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/mylist"),
+        loader: () => fetch("https://tourism-hub-server.vercel.app/mylist"),
       },
       {
         path: "/viewdetails/:id",
@@ -63,7 +63,9 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/viewDetails/${params.id}`),
+          fetch(
+            `https://tourism-hub-server.vercel.app/viewDetails/${params.id}`
+          ),
       },
       {
         path: "/mylist/:id",
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/mylist/${params.id}`),
+          fetch(`https://tourism-hub-server.vercel.app/mylist/${params.id}`),
       },
     ],
   },

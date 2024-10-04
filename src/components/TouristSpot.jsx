@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const TouristSpot = ({ spot }) => {
-  // const handleViewDetails = () => {};
   const {
     _id,
     image,
@@ -14,8 +13,8 @@ const TouristSpot = ({ spot }) => {
     time,
   } = spot;
   return (
-    <div>
-      <div className="card bg-base-100 w-96 h-auto shadow-xl">
+    <div className="flex justify-center">
+      <div className="card bg-base-100 w-full sm:w-80 md:w-96 h-auto shadow-xl">
         <figure>
           <img className="w-full h-48 object-cover" src={image} alt="image" />
         </figure>

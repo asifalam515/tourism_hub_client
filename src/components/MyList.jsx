@@ -7,7 +7,6 @@ const MyList = () => {
   const loadedData = useLoaderData();
   const { user } = useContext(AuthContext);
 
-  // Initialize state with filtered loaded data
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const MyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/mylist/${_id}`, {
+        fetch(`https://tourism-hub-server.vercel.app/mylist/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -50,7 +49,6 @@ const MyList = () => {
     });
   };
 
-  // Ensure user.email exists before using it
   if (!user?.email) {
     return <div>Loading...</div>;
   }
@@ -58,7 +56,6 @@ const MyList = () => {
   return (
     <div className="p-4 md:p-8">
       <h1 className="text-2xl font-bold mb-4">My list</h1>
-      {/* Render the filtered data */}
       <div className="overflow-x-auto">
         <table className="table-auto w-full">
           {/* head */}

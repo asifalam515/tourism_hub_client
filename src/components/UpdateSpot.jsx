@@ -37,7 +37,7 @@ const UpdateSpot = () => {
       user_name,
     };
     // updated request
-    fetch(`http://localhost:5000/mylist/${loadedData._id}`, {
+    fetch(`https://tourism-hub-server.vercel.app/mylist/${loadedData._id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

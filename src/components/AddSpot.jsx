@@ -30,7 +30,7 @@ const AddSpot = () => {
       user_name,
     };
     // insert at mongodb
-    fetch("http://localhost:5000/spot", {
+    fetch("https://tourism-hub-server.vercel.app/spot", {
       method: "POST",
       headers: {
         Accept: "application/json",
